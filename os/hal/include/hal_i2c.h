@@ -155,6 +155,16 @@ extern "C" {
   void i2cReleaseBus(I2CDriver *i2cp);
 #endif
 
+#if STM32_I2C_SLAVE_ENABLE
+  msg_t i2cSlaveMatchAddress(I2CDriver *i2cp, i2caddr_t  i2cadr);
+  msg_t i2cSlaveOnReceive(I2CDriver *i2cp, i2c_slave_receive_callback_t callback,
+                                      uint8_t *rxbuf, size_t rxbytes);
+  void i2cSlaveOnRequest(I2CDriver *i2cp, i2c_slave_transmit_callback_t callback);
+  msg_t i2cSlaveStartTransmission(I2CDriver *i2cp, const uint8_t *txbuf,
+                                                          size_t txbytes);
+#endif /* STM32_I2C_SLAVE_ENABLE */
+
+
 #ifdef __cplusplus
 }
 #endif
